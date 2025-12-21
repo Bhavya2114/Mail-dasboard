@@ -1,0 +1,726 @@
+/* --- Overlay --- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  animation: fadeIn 0.2s ease forwards;
+  padding: 1rem;
+}
+
+/* --- Modal --- */
+.modal {
+  width: min(800px, 100%);
+  max-height: 90vh;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  animation: slideUp 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  overflow: hidden;
+}
+
+/* --- Modal Content --- */
+.modalContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  min-width: 0;
+  gap: 0;
+}
+
+/* ---------------- Header ---------------- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  flex-shrink: 0;
+}
+
+.header > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.subTitle {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.closeBtn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(90deg);
+}
+
+/* ---------------- Form Content ---------------- */
+.formContent {
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1;
+}
+
+/* ---------------- Generic fields ---------------- */
+.field,
+.fieldInline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldInline {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.fieldInline span {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 500;
+  min-width: 60px;
+}
+
+.fieldLabel {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.fieldLabel::after {
+  content: ':';
+}
+
+.field input,
+.fieldInline input,
+.textareaWrapper textarea {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  padding: 0.875rem 1rem;
+  background: #f8fafc;
+  outline: none;
+  color: #1e293b;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+}
+
+.field input:focus,
+.fieldInline input:focus,
+.textareaWrapper textarea:focus {
+  border-color: #667eea;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* ---------------- CC/BCC ---------------- */
+.optionalFields {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: -0.5rem;
+}
+
+.linkBtn {
+  background: white;
+  border: 2px solid #e2e8f0;
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.625rem 1.25rem;
+  border-radius: 10px;
+  flex: none;
+  transition: all 0.2s ease;
+}
+
+.linkBtn:hover {
+  border-color: #94a3b8;
+  color: #475569;
+}
+
+.active {
+  background: #667eea;
+  border-color: #667eea;
+  color: white;
+}
+
+/* ---------------- Quick Row (Rich Text/Schedule/Attach) ---------------- */
+.quickRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  margin-top: 0.5rem;
+}
+
+.quickGroup {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.chipBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chipBtn:hover {
+  border-color: #94a3b8;
+  color: #475569;
+}
+
+.chipActive {
+  background: #667eea;
+  border-color: #667eea;
+  color: white;
+}
+
+.attachWrap {
+  display: flex;
+  align-items: center;
+}
+
+.attachBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 2px solid #667eea;
+  background: white;
+  color: #667eea;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.attachBtn:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* ---------------- Message Section ---------------- */
+.messageSection {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.75rem;
+}
+
+.messageLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Editor Container */
+.editorContainer {
+  width: 100%;
+  height: 280px;
+  position: relative;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background: white;
+  overflow: hidden;
+}
+
+/* ---------------- Textarea ---------------- */
+.textareaWrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.textareaWrapper textarea {
+  height: 100%;
+  resize: none;
+  padding: 1rem;
+  border: none;
+  background: white;
+  font-family: inherit;
+  line-height: 1.6;
+}
+
+/* ---------------- Rich Text ---------------- */
+.richTextWrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: none;
+  background: white;
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-bottom: 2px solid #f1f5f9;
+  background: #f8fafc;
+}
+
+.toolbar button {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  min-width: 40px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #475569;
+  transition: all 0.2s ease;
+}
+
+.toolbar button:hover {
+  border-color: #667eea;
+  background: #f8fafc;
+}
+
+.toolbarDivider {
+  width: 1px;
+  background: #e2e8f0;
+  margin: 0 0.5rem;
+}
+
+.richTextEditor {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  outline: none;
+  line-height: 1.6;
+}
+
+.richTextEditor:focus {
+  outline: none;
+}
+
+.richTextEditor ul,
+.richTextEditor ol {
+  margin-left: 1.5rem;
+}
+
+/* ---------- AI ICON INSIDE BOX ----------*/
+.aiInside {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+  cursor: pointer;
+  z-index: 5;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.aiInside:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+}
+
+.aiInside:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.sparkleIcon {
+  width: 22px;
+  height: 22px;
+}
+
+/* spinner */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------------- Schedule ---------------- */
+.scheduleCard {
+  border: 2px solid rgba(102, 126, 234, 0.2);
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.scheduleHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  font-size: 1.1rem;
+}
+
+.clockIcon {
+  width: 20px;
+  height: 20px;
+  color: #667eea;
+}
+
+.removeBtn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #94a3b8;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease;
+}
+
+.removeBtn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.scheduleInputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+/* ---------------- Attachments ---------------- */
+.attachmentsSection {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 0.5rem;
+}
+
+.attachmentsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.attachmentsHeader span {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 0.95rem;
+}
+
+.uploadStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(59, 130, 246, 0.1);
+  border: 2px solid rgba(59, 130, 246, 0.2);
+  color: #1d4ed8;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+}
+
+.attachmentsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.attachmentItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.attachmentItem:hover {
+  border-color: #94a3b8;
+}
+
+.attachmentIcon {
+  width: 20px;
+  height: 20px;
+  color: #667eea;
+}
+
+.attachmentName {
+  font-weight: 600;
+  color: #1e293b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+.attachmentSize {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.removeAttachmentBtn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #94a3b8;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease;
+}
+
+.removeAttachmentBtn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.emptyAttachments {
+  padding: 2rem 1rem;
+  border: 2px dashed #e2e8f0;
+  border-radius: 10px;
+  background: white;
+  color: #94a3b8;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* ---------------- Actions ---------------- */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 0 0;
+  margin-top: 1.5rem;
+  border-top: 2px solid #f1f5f9;
+}
+
+.secondaryBtn {
+  background: white;
+  border: 2px solid #e2e8f0;
+  color: #64748b;
+  border-radius: 10px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.secondaryBtn:hover:not(:disabled) {
+  border-color: #94a3b8;
+  color: #475569;
+  background: #f8fafc;
+}
+
+.secondaryBtn:disabled,
+.sendBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sendBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.875rem 1.75rem;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+  transition: all 0.2s ease;
+}
+
+.sendBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* ---------------- Status Messages ---------------- */
+.error {
+  margin: 0;
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  color: #dc2626;
+  border: 2px solid #fca5a5;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.error::before {
+  content: '⚠️';
+  font-size: 1.1rem;
+}
+
+.meta {
+  margin: 0.75rem 0 0;
+  color: #10b981;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.meta::before {
+  content: '✓';
+  font-size: 1.1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .overlay {
+    padding: 0.5rem;
+  }
+  
+  .modal {
+    border-radius: 16px;
+    max-height: 95vh;
+  }
+  
+  .header {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .formContent {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+  
+  .quickRow {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+  
+  .quickGroup {
+    flex-wrap: wrap;
+  }
+  
+  .scheduleInputs {
+    grid-template-columns: 1fr;
+  }
+  
+  .actions {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+  
+  .secondaryBtn,
+  .sendBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}
